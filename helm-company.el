@@ -92,18 +92,18 @@ Set it to nil if you don't want this limit."
 (defun helm-company-find-location (candidate)
   "Find location of CANDIDATE."
   (interactive)
-    (let* ((location (save-excursion (funcall helm-company-backend 'location candidate)))
-           (pos (or (cdr location) (error "No location available")))
-           (buffer (or (and (bufferp (car location)) (car location))
-                       (find-file-noselect (car location) t))))
-      (with-selected-window (display-buffer buffer t)
-        (save-restriction
-          (widen)
-          (if (bufferp (car location))
-              (goto-char pos)
-            (goto-char (point-min))
-            (forward-line (1- pos))))
-        (set-window-start nil (point)))))
+  (let* ((location (save-excursion (funcall helm-company-backend 'location candidate)))
+         (pos (or (cdr location) (error "No location available")))
+         (buffer (or (and (bufferp (car location)) (car location))
+                     (find-file-noselect (car location) t))))
+    (with-selected-window (display-buffer buffer t)
+      (save-restriction
+        (widen)
+        (if (bufferp (car location))
+            (goto-char pos)
+          (goto-char (point-min))
+          (forward-line (1- pos))))
+      (set-window-start nil (point)))))
 
 (defun helm-company-display-document-buffer (buffer)
   "Temporarily show the documentation BUFFER."
@@ -115,9 +115,9 @@ Set it to nil if you don't want this limit."
 
 (defmacro helm-company-run-action (&rest body)
   `(with-helm-window
-    (save-selected-window
-      (with-helm-display-same-window
-        ,@body))))
+     (save-selected-window
+       (with-helm-display-same-window
+         ,@body))))
 
 (defun helm-company-run-show-doc-buffer ()
   "Run showing documentation action from `helm-company'."
@@ -150,16 +150,6 @@ Set it to nil if you don't want this limit."
   :type 'boolean)
 
 (defvar helm-source-company
-<<<<<<< HEAD
-  `((name . "Company")
-    (init . helm-company-init)
-    (candidates . (lambda () (helm-attr 'company-candidates)))
-    (action . ,helm-company-actions)
-    (persistent-action . helm-company-show-doc-buffer)
-    (persistent-help . "Show documentation (If available)")
-    (keymap . ,helm-company-map)
-    (company-candidates)))
-=======
   (helm-build-in-buffer-source "Company"
     :data (lambda ()
             (helm-company-init)
@@ -170,7 +160,6 @@ Set it to nil if you don't want this limit."
     :persistent-help "Show document (If available)"
     :action helm-company-actions)
   "Helm source definition for recent files in current project.")
->>>>>>> 1d334316121af37df8b02d978ac1f334dc0e605e
 
 ;;;###autoload
 (defun helm-company ()
