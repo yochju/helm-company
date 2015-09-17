@@ -157,7 +157,7 @@ Set it to nil if you don't want this limit."
     :fuzzy-match helm-company-fuzzy-match
     :keymap helm-company-map
     :persistent-action 'helm-company-show-doc-buffer
-    :persistent-help "Show document (If available)"
+    :persistent-help "Show documentation (If available)"
     :action helm-company-actions)
   "Helm source definition for recent files in current project.")
 
