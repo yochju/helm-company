@@ -178,6 +178,7 @@ It is useful to narrow candidates."
   (unless company-candidates
     (company-complete))
   (when company-point
+    (company-complete-common)
     (helm :sources 'helm-source-company
           :buffer  "*helm company*"
           :candidate-number-limit helm-company-candidate-number-limit)))
