@@ -79,8 +79,8 @@ Set it to nil if you don't want this limit."
 (defun helm-company-action-show-document (candidate)
   "Show the documentation of the CANDIDATE."
   (interactive)
-  (let ((selection (cl-find-if (lambda (s) (string-match-p candidate s)) helm-company-candidates))
-        (buffer (helm-company-call-backend 'doc-buffer selection)))
+  (let* ((selection (cl-find-if (lambda (s) (string-match-p candidate s)) helm-company-candidates))
+         (buffer (helm-company-call-backend 'doc-buffer selection)))
     (when buffer
       (display-buffer buffer))))
 
