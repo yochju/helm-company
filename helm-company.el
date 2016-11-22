@@ -62,6 +62,8 @@ Set it to nil if you don't want this limit."
   "Prepare helm for company."
   (helm-attrset 'company-candidates company-candidates)
   (helm-attrset 'company-common company-common)
+  (helm-attrset 'company-prefix company-prefix)
+  (helm-attrset 'company-backend company-backend)
   (setq helm-company-help-window nil)
   (if (<= (length company-candidates) 1)
       (helm-exit-minibuffer)
@@ -71,8 +73,12 @@ Set it to nil if you don't want this limit."
 
 (defun helm-company-action-insert (candidate)
   "Insert CANDIDATE."
-  (delete-char (- (length (helm-attr 'company-common))))
-  (insert candidate)
+  (let* ((company-candidates (helm-attr 'company-candidates))
+         (company-backend (helm-attr 'company-backend))
+         (selection (cl-find-if (lambda (s) (string-match-p candidate s)) company-candidates))
+         (company-common (helm-attr 'company-common))
+         (company-prefix (helm-attr 'company-prefix)))
+    (company-finish selection))
   ;; for GC
   (helm-attrset 'company-candidates nil))
 
