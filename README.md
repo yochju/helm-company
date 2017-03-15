@@ -1,3 +1,5 @@
+UNMAINTAINED: please check [this issue](https://github.com/manuel-uberti/helm-company/issues/10).
+
 helm-company.el [![Build Status](https://travis-ci.org/yasuyk/helm-company.png)](https://travis-ci.org/yasuyk/helm-company)
 ============
 
