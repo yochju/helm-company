@@ -34,6 +34,4 @@
 (eval-when-compile
   (require 'cl))
 
-(provide 'test-helper)
-
 ;;; test-helper.el ends here
