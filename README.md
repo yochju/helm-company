@@ -1,4 +1,4 @@
-UNMAINTAINED: please check [this issue](https://github.com/manuel-uberti/helm-company/issues/10).
+UNMAINTAINED: please refer to [this repository](https://github.com/Sodel-the-Vociferous/helm-company) for the active fork currently on MELPA.
 
 helm-company.el [![Build Status](https://travis-ci.org/yasuyk/helm-company.png)](https://travis-ci.org/yasuyk/helm-company)
 ============
